@@ -29,11 +29,11 @@ public class SearchMovieResponse {
             this.page = page;
         }
 
-        public List<SearchedMovie> getResults() {
+        public List<SearchedMovie> getSearchedMovies() {
             return searchedMovies;
         }
 
-        public void setResults(List<SearchedMovie> searchedMovies) {
+        public void setSearchedMovies(List<SearchedMovie> searchedMovies) {
             this.searchedMovies = searchedMovies;
         }
 
