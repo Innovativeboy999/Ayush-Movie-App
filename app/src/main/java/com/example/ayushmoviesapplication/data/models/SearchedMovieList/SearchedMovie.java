@@ -1,11 +1,11 @@
-package com.example.ayushmoviesapplication.data.models.PopularMoviesList;
+package com.example.ayushmoviesapplication.data.models.SearchedMovieList;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Result {
+public class SearchedMovie {
 
         @SerializedName("adult")
         @Expose
@@ -45,7 +45,7 @@ public class Result {
         private boolean video;
         @SerializedName("vote_average")
         @Expose
-        private int voteAverage;
+        private float voteAverage;
         @SerializedName("vote_count")
         @Expose
         private int voteCount;
@@ -146,11 +146,11 @@ public class Result {
             this.video = video;
         }
 
-        public int getVoteAverage() {
+        public float getVoteAverage() {
             return voteAverage;
         }
 
-        public void setVoteAverage(int voteAverage) {
+        public void setVoteAverage(float voteAverage) {
             this.voteAverage = voteAverage;
         }
 

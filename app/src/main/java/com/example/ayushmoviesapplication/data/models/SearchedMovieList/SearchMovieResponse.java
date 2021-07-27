@@ -1,18 +1,19 @@
-package com.example.ayushmoviesapplication.data.models.PopularMoviesList;
+package com.example.ayushmoviesapplication.data.models.SearchedMovieList;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class PopularMovieList {
+public class SearchMovieResponse {
+
 
         @SerializedName("page")
         @Expose
         private int page;
         @SerializedName("results")
         @Expose
-        private List<Movie> movies = null;
+        private List<SearchedMovie> searchedMovies = null;
         @SerializedName("total_pages")
         @Expose
         private int totalPages;
@@ -28,12 +29,12 @@ public class PopularMovieList {
             this.page = page;
         }
 
-        public List<Movie> getMovies() {
-            return movies;
+        public List<SearchedMovie> getResults() {
+            return searchedMovies;
         }
 
-        public void setMovies(List<Movie> movies) {
-            this.movies = movies;
+        public void setResults(List<SearchedMovie> searchedMovies) {
+            this.searchedMovies = searchedMovies;
         }
 
         public int getTotalPages() {
