@@ -1,28 +1,11 @@
-package com.example.ayushmoviesapplication.data.models.SearchedMovieList;
-
-import android.annotation.SuppressLint;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
+package com.example.ayushmoviesapplication.data.models.MovieDetailsResponse;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class SearchedMovie {
-
-    public static DiffUtil.ItemCallback<SearchedMovie> DIFF_CALLBACK = new DiffUtil.ItemCallback<SearchedMovie>() {
-        @Override
-        public boolean areItemsTheSame(@NonNull SearchedMovie oldItem, @NonNull SearchedMovie newItem) {
-            return oldItem.getId()==newItem.getId();
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull SearchedMovie oldItem, @NonNull SearchedMovie newItem) {
-            return oldItem.equals(newItem);
-        }
-    };
+public class MovieDetailsResponse {
 
         @SerializedName("adult")
         @Expose
@@ -30,12 +13,24 @@ public class SearchedMovie {
         @SerializedName("backdrop_path")
         @Expose
         private String backdropPath;
-        @SerializedName("genre_ids")
+        @SerializedName("belongs_to_collection")
         @Expose
-        private List<Integer> genreIds = null;
+        private Object belongsToCollection;
+        @SerializedName("budget")
+        @Expose
+        private int budget;
+        @SerializedName("genres")
+        @Expose
+        private List<Genre> genres = null;
+        @SerializedName("homepage")
+        @Expose
+        private String homepage;
         @SerializedName("id")
         @Expose
         private int id;
+        @SerializedName("imdb_id")
+        @Expose
+        private String imdbId;
         @SerializedName("original_language")
         @Expose
         private String originalLanguage;
@@ -51,9 +46,30 @@ public class SearchedMovie {
         @SerializedName("poster_path")
         @Expose
         private String posterPath;
+        @SerializedName("production_companies")
+        @Expose
+        private List<ProductionCompany> productionCompanies = null;
+        @SerializedName("production_countries")
+        @Expose
+        private List<ProductionCountry> productionCountries = null;
         @SerializedName("release_date")
         @Expose
         private String releaseDate;
+        @SerializedName("revenue")
+        @Expose
+        private int revenue;
+        @SerializedName("runtime")
+        @Expose
+        private int runtime;
+        @SerializedName("spoken_languages")
+        @Expose
+        private List<SpokenLanguage> spokenLanguages = null;
+        @SerializedName("status")
+        @Expose
+        private String status;
+        @SerializedName("tagline")
+        @Expose
+        private String tagline;
         @SerializedName("title")
         @Expose
         private String title;
@@ -83,12 +99,36 @@ public class SearchedMovie {
             this.backdropPath = backdropPath;
         }
 
-        public List<Integer> getGenreIds() {
-            return genreIds;
+        public Object getBelongsToCollection() {
+            return belongsToCollection;
         }
 
-        public void setGenreIds(List<Integer> genreIds) {
-            this.genreIds = genreIds;
+        public void setBelongsToCollection(Object belongsToCollection) {
+            this.belongsToCollection = belongsToCollection;
+        }
+
+        public int getBudget() {
+            return budget;
+        }
+
+        public void setBudget(int budget) {
+            this.budget = budget;
+        }
+
+        public List<Genre> getGenres() {
+            return genres;
+        }
+
+        public void setGenres(List<Genre> genres) {
+            this.genres = genres;
+        }
+
+        public String getHomepage() {
+            return homepage;
+        }
+
+        public void setHomepage(String homepage) {
+            this.homepage = homepage;
         }
 
         public int getId() {
@@ -97,6 +137,14 @@ public class SearchedMovie {
 
         public void setId(int id) {
             this.id = id;
+        }
+
+        public String getImdbId() {
+            return imdbId;
+        }
+
+        public void setImdbId(String imdbId) {
+            this.imdbId = imdbId;
         }
 
         public String getOriginalLanguage() {
@@ -139,12 +187,68 @@ public class SearchedMovie {
             this.posterPath = posterPath;
         }
 
+        public List<ProductionCompany> getProductionCompanies() {
+            return productionCompanies;
+        }
+
+        public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
+            this.productionCompanies = productionCompanies;
+        }
+
+        public List<ProductionCountry> getProductionCountries() {
+            return productionCountries;
+        }
+
+        public void setProductionCountries(List<ProductionCountry> productionCountries) {
+            this.productionCountries = productionCountries;
+        }
+
         public String getReleaseDate() {
             return releaseDate;
         }
 
         public void setReleaseDate(String releaseDate) {
             this.releaseDate = releaseDate;
+        }
+
+        public int getRevenue() {
+            return revenue;
+        }
+
+        public void setRevenue(int revenue) {
+            this.revenue = revenue;
+        }
+
+        public int getRuntime() {
+            return runtime;
+        }
+
+        public void setRuntime(int runtime) {
+            this.runtime = runtime;
+        }
+
+        public List<SpokenLanguage> getSpokenLanguages() {
+            return spokenLanguages;
+        }
+
+        public void setSpokenLanguages(List<SpokenLanguage> spokenLanguages) {
+            this.spokenLanguages = spokenLanguages;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public void setStatus(String status) {
+            this.status = status;
+        }
+
+        public String getTagline() {
+            return tagline;
+        }
+
+        public void setTagline(String tagline) {
+            this.tagline = tagline;
         }
 
         public String getTitle() {
@@ -179,12 +283,4 @@ public class SearchedMovie {
             this.voteCount = voteCount;
         }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this)
-            return true;
-        SearchedMovie newMovie=(SearchedMovie) obj;
-        return this.getId()==newMovie.getId();
     }
-
-}

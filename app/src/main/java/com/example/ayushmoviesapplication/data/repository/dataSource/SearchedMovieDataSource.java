@@ -1,4 +1,4 @@
-package com.example.ayushmoviesapplication.data.repository;
+package com.example.ayushmoviesapplication.data.repository.dataSource;
 
 import android.util.Log;
 
@@ -21,7 +21,7 @@ public class SearchedMovieDataSource extends PageKeyedDataSource<Integer, Search
         private MovieInterface apiService;
         private String queryString;
         int count =1;
-        SearchedMovieDataSource(CompositeDisposable compositeDisposable, MovieInterface apiService,String queryString)
+        public SearchedMovieDataSource(CompositeDisposable compositeDisposable, MovieInterface apiService,String queryString)
         {
             this.compositeDisposable=compositeDisposable;
             this.apiService=apiService;
