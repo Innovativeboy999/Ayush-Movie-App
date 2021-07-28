@@ -33,7 +33,6 @@ import kotlin.Suppress;
 public class SearchFragment extends Fragment implements View.OnClickListener{
 
     private FragmentSearchBinding binding;
-    private SearchedMoviePageListRepository searchedMoviePageListRepository;
     private MovieInterface apiService=MovieClient.getMovieInterface();
     private SearchAdapter adapter=new SearchAdapter(getContext());
     private MainActivityViewModel viewModel;
@@ -53,7 +52,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        searchedMoviePageListRepository=new SearchedMoviePageListRepository(apiService, "");
 
         viewModel=getViewModel();
         viewModel.searchedMoviePagedList.observe(getViewLifecycleOwner(), new Observer<PagedList<SearchedMovie>>() {
@@ -88,15 +86,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
     }
 
     private MainActivityViewModel getViewModel() {
-        return new ViewModelProvider(getActivity(), new ViewModelProvider.Factory() {
-            @NonNull
-            @Override
-            public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-                Log.i("111111", "create: View Model instamce is being created"+(searchedMoviePageListRepository==null));
-                MainActivityViewModel temp=new MainActivityViewModel(searchedMoviePageListRepository);
-                return (T) temp;
-            }
-        }).get(MainActivityViewModel.class);
+        return new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
     }
 
     private void setOnClickListener()
@@ -108,7 +98,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
     {
         if(binding.searchEditText.getText().toString().length()>0)
         {
-            searchedMoviePageListRepository.getSearchedMovieDataSourceFactory().refresh(binding.searchEditText.getText().toString());
+            viewModel.searchedMoviePageListRepository.getSearchedMovieDataSourceFactory().refresh(binding.searchEditText.getText().toString());
         }
         else
         {

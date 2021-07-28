@@ -21,7 +21,7 @@ public class PopularMovieDataSource extends PageKeyedDataSource<Integer, Movie>
     private MovieInterface apiService;
     int count =1;
 
-    PopularMovieDataSource(CompositeDisposable compositeDisposable, MovieInterface apiService)
+    public PopularMovieDataSource(CompositeDisposable compositeDisposable, MovieInterface apiService)
     {
         this.compositeDisposable=compositeDisposable;
         this.apiService=apiService;

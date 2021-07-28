@@ -1,11 +1,25 @@
 package com.example.ayushmoviesapplication.data.models.PopularMoviesList;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class Movie {
+    public static DiffUtil.ItemCallback<Movie> DIFF_CALLBACK = new DiffUtil.ItemCallback<Movie>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+            return oldItem.getId()==newItem.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
 
         @SerializedName("adult")
         @Expose
@@ -45,7 +59,7 @@ public class Movie {
         private boolean video;
         @SerializedName("vote_average")
         @Expose
-        private int voteAverage;
+        private float voteAverage;
         @SerializedName("vote_count")
         @Expose
         private int voteCount;
@@ -146,11 +160,11 @@ public class Movie {
             this.video = video;
         }
 
-        public int getVoteAverage() {
+        public float getVoteAverage() {
             return voteAverage;
         }
 
-        public void setVoteAverage(int voteAverage) {
+        public void setVoteAverage(float voteAverage) {
             this.voteAverage = voteAverage;
         }
 
@@ -162,4 +176,11 @@ public class Movie {
             this.voteCount = voteCount;
         }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+        Movie newMovie=(Movie) obj;
+        return this.getId()==newMovie.getId();
+    }
 }
