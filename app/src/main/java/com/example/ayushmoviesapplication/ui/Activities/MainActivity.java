@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -31,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     private PopularFragment fragmentPopular=new PopularFragment();
     private SearchFragment fragmentSearch=new SearchFragment();
     private Fragment active =fragmentPopular;
-    private MainActivityViewModel mainActivityViewModel;
-    private SearchedMoviePageListRepository searchedMoviePageListRepository;
+    private Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +44,12 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         manager.beginTransaction().add(R.id.holderContainer,fragmentSearch,"3").hide(fragmentSearch).commit();
         manager.beginTransaction().add(R.id.holderContainer,fragmentPopular,"1").commit();
 
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
         binding.bottomNavigationView.setOnItemSelectedListener(this);
     }
 

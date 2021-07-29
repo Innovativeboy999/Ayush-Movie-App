@@ -65,7 +65,7 @@ public class PopularMovieDataSource extends PageKeyedDataSource<Integer, Movie>
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.e("111111", "loadAfter: inside Popular Movie data source  load initial"+throwable.getMessage());
+                        Log.e("111111", "loadAfter: inside Popular Movie data source  load after"+throwable.getMessage());
 
                     }
                 }));

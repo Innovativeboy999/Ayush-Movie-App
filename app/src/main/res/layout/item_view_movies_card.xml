@@ -6,13 +6,69 @@
     android:layout_marginTop="8dp"
     android:layout_marginRight="10dp"
     android:layout_marginBottom="2dp"
-    android:layout_height="200dp">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:gravity="center"
-        android:id="@+id/text_view_name"
-        android:text="HAre Krishna"
-        android:textSize="18dp"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:elevation="10dp"
+        android:id="@+id/card_view__movie_display_model"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:id="@+id/movie_img"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
+                android:layout_height="180dp"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:text="Movie Title"
+                    android:gravity="center"
+                    android:id="@+id/movie_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="100"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:textSize="14sp"
+                        android:text="Category"
+                        android:layout_weight="90"
+                        android:gravity="start"
+                        android:id="@+id/movie_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:textSize="14sp"
+
+                        android:layout_weight="10"
+                        android:gravity="center"
+                        android:text="Duration"
+                        android:id="@+id/movie_language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <RatingBar
+                android:id="@+id/rating_bar"
+                android:layout_width="match_parent"
+                android:numStars="5"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

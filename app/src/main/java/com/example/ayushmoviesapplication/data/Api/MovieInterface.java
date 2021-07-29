@@ -1,6 +1,7 @@
 package com.example.ayushmoviesapplication.data.Api;
 
 import com.example.ayushmoviesapplication.data.models.MovieDetailsResponse.MovieDetailsResponse;
+import com.example.ayushmoviesapplication.data.models.NowPlayingResponse.NowPlayingResponse;
 import com.example.ayushmoviesapplication.data.models.PopularMoviesList.PopularMovieList;
 import com.example.ayushmoviesapplication.data.models.SearchedMovieList.SearchMovieResponse;
 
@@ -28,6 +29,12 @@ public interface MovieInterface {
     );
 
     //https://api.themoviedb.org/3/movie/now_playing?api_key=<<api_key>>&language=en-US&page=1
+    @GET("3/movie/now_playing")
+    Single<NowPlayingResponse> getNowPlaying(
+            @Query("api_key") String token,
+            @Query("language") String language ,
+            @Query("page") String page
+    );
 
     //https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
     @GET("3/movie/{movie_id}")

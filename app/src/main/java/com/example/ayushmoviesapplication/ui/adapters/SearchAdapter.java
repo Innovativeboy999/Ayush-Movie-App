@@ -2,6 +2,7 @@ package com.example.ayushmoviesapplication.ui.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +14,11 @@ import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.ayushmoviesapplication.R;
 import com.example.ayushmoviesapplication.data.models.SearchedMovieList.SearchedMovie;
 import com.example.ayushmoviesapplication.databinding.ItemViewMoviesCardBinding;
+import com.example.ayushmoviesapplication.ui.Activities.MovieDetails;
 
 public class SearchAdapter extends PagedListAdapter<SearchedMovie, RecyclerView .ViewHolder>
 {
@@ -59,7 +62,22 @@ public class SearchAdapter extends PagedListAdapter<SearchedMovie, RecyclerView 
         }
         public void bind(SearchedMovie movie)
         {
-            binding.textViewName.setText(movie.getTitle());
+            binding.getRoot().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context, MovieDetails.class);
+                    intent.putExtra("movie_id",movie.getId());
+                    context.startActivity(intent);
+                }
+            });
+
+            binding.ratingBar.setNumStars(5);
+            binding.movieTitle.setText(movie.getTitle());
+            binding.movieLanguage.setText(movie.getOriginalLanguage());
+            binding.ratingBar.setRating(movie.getVoteAverage()/2);
+            Glide.with(binding.getRoot().getContext()).load("https://image.tmdb.org/t/p/w500/"+movie.getPosterPath()).into(binding.movieImg);
+
         }
+
     }
 }

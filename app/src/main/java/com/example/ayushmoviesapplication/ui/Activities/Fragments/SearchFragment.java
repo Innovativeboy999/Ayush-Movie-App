@@ -33,7 +33,6 @@ import kotlin.Suppress;
 public class SearchFragment extends Fragment implements View.OnClickListener{
 
     private FragmentSearchBinding binding;
-    private MovieInterface apiService=MovieClient.getMovieInterface();
     private SearchAdapter adapter=new SearchAdapter(getContext());
     private MainActivityViewModel viewModel;
 
@@ -54,6 +53,8 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
 
 
         viewModel=getViewModel();
+        viewModel.getSearchedMoviePagedList();
+
         viewModel.searchedMoviePagedList.observe(getViewLifecycleOwner(), new Observer<PagedList<SearchedMovie>>() {
             @Override
             public void onChanged(PagedList<SearchedMovie> searchedMovies) {

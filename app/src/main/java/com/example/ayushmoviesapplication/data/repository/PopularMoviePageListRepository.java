@@ -14,13 +14,11 @@ import io.reactivex.disposables.CompositeDisposable;
 public class PopularMoviePageListRepository {
 
        private MovieInterface apiService;
-        private String queryString;
         private PopularMovieDataSourceFactory popularMovieDataSourceFactory;
         private LiveData<PagedList<Movie>> popularMoviePagedList;
         public PopularMoviePageListRepository(MovieInterface apiService)
         {
             this.apiService=apiService;
-            this.queryString=queryString;
         }
         public LiveData<PagedList<Movie>> fetchLiveSearchedMovieList(CompositeDisposable compositeDisposable)
         {

@@ -30,7 +30,6 @@ import com.example.ayushmoviesapplication.ui.adapters.SearchAdapter;
 
 public class PopularFragment extends Fragment {
     private FragmentPopularBinding binding;
-    private MovieInterface apiService= MovieClient.getMovieInterface();
     private MainActivityViewModel viewModel;
     private PopularMovieAdapter adapter;
 
@@ -55,6 +54,7 @@ public class PopularFragment extends Fragment {
         binding.popularMovieRecyclerView.setAdapter(adapter);
 
         viewModel=getViewModel();
+        viewModel.getPopularMoviePagedList();
         viewModel.popularMoviePagedList.observe(getViewLifecycleOwner(), new Observer<PagedList<Movie>>() {
             @Override
             public void onChanged(PagedList<Movie> movies) {
