@@ -34,12 +34,11 @@ public class MovieDetails extends AppCompatActivity {
             viewModel.movieDetailsResponseLiveData.observe(this, new Observer<MovieDetailsResponse>() {
                 @Override
                 public void onChanged(MovieDetailsResponse movieDetailsResponse) {
-                    Log.i("11111", "onChanged:loading method called ");
                     Glide.with(binding.getRoot().getContext()).
                             load("https://image.tmdb.org/t/p/w500/"+movieDetailsResponse.getPosterPath()).into(binding.movieDetailsPic);
+                    binding.movieOverviewInDetails.setText(movieDetailsResponse.getOverview());
                 }
             });
-
 
     }
 

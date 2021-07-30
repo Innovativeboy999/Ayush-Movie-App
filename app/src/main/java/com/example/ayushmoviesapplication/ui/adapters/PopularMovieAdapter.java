@@ -70,7 +70,6 @@ public class PopularMovieAdapter extends PagedListAdapter<Movie, RecyclerView .V
 
                 binding.ratingBar.setNumStars(5);
                 binding.movieTitle.setText(movie.getTitle());
-                binding.movieLanguage.setText(movie.getOriginalLanguage());
                 binding.ratingBar.setRating(movie.getVoteAverage()/2);
                 Glide.with(binding.getRoot().getContext()).load("https://image.tmdb.org/t/p/w500/"+movie.getPosterPath()).into(binding.movieImg);
             }
