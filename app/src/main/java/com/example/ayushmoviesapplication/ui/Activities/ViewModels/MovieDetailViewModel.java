@@ -1,5 +1,6 @@
 package com.example.ayushmoviesapplication.ui.Activities.ViewModels;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.ayushmoviesapplication.data.Api.MovieClient;
 import com.example.ayushmoviesapplication.data.models.MovieDetailsResponse.MovieDetailsResponse;
 import com.example.ayushmoviesapplication.data.repository.MovieDetailRepository;
+import com.example.ayushmoviesapplication.data.repository.RoomRepository.RoomMoviesRepository;
 import com.example.ayushmoviesapplication.ui.Activities.MainActivity;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -32,4 +34,11 @@ public class MovieDetailViewModel extends ViewModel {
         super.onCleared();
         compositeDisposable.dispose();
     }
+
+    public void addToRoomDatabse(String movie_title, int id, float rating, Context context)
+    {
+        RoomMoviesRepository movieRepository = new RoomMoviesRepository(context);
+        movieRepository.insertTask(id, movie_title, rating);
+    }
+
 }

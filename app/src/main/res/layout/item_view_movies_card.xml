@@ -26,6 +26,17 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher_background"
                 android:layout_height="280dp"/>
+
+            <TextView
+                android:visibility="gone"
+                android:text="Movies Pics Not available in Offline Mode"
+                android:layout_width="match_parent"
+                android:id="@+id/text_img_placeholder"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:src="@drawable/ic_launcher_background"
+                android:layout_height="280dp"/>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -40,9 +51,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
-
-
             </LinearLayout>
+
+
+            <TextView
+                android:visibility="gone"
+                android:textSize="16sp"
+                android:text="Remove Movie From Saved"
+                android:textColor="#C813B4"
+                android:layout_weight="90"
+                android:gravity="start"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:id="@+id/remove_bookmark_in_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <RatingBar
                 android:padding="5dp"
                 android:layout_gravity="center"

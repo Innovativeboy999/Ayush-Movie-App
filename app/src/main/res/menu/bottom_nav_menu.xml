@@ -13,4 +13,9 @@
         android:title="Search"
         android:icon="@drawable/search"/>
 
+    <item
+        android:id="@+id/savedMovies"
+        android:title="Saved Movies"
+        android:icon="@drawable/folder"/>
+
 </menu>

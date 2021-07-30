@@ -5,6 +5,7 @@ import android.app.AppOpsManager;
 import com.example.ayushmoviesapplication.data.Utils.scope.MainActivityScope;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.NowPlayingFragment;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.PopularFragment;
+import com.example.ayushmoviesapplication.ui.Activities.Fragments.SavedMoviesFragment;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.SearchFragment;
 import com.example.ayushmoviesapplication.ui.Activities.MainActivity;
 
@@ -37,5 +38,12 @@ public class MainActivityModule {
     public SearchFragment getSearchFragment()
     {
         return new SearchFragment();
+    }
+
+    @Provides
+    @MainActivityScope
+    public SavedMoviesFragment getSavedMoviesFragment()
+    {
+        return new SavedMoviesFragment();
     }
 }

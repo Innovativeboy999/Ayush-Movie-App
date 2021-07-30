@@ -21,6 +21,7 @@ import com.example.ayushmoviesapplication.data.Utils.modules.MainActivityModule;
 import com.example.ayushmoviesapplication.databinding.ActivityMainBinding;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.NowPlayingFragment;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.PopularFragment;
+import com.example.ayushmoviesapplication.ui.Activities.Fragments.SavedMoviesFragment;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.SearchFragment;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -30,15 +31,14 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
     private ActivityMainBinding binding;
     private FragmentManager manager=getSupportFragmentManager();
-//    private NowPlayingFragment fragmentPlaying=new NowPlayingFragment();;
-//    private PopularFragment fragmentPopular=new PopularFragment();
-//    private SearchFragment fragmentSearch=new SearchFragment();
     @Inject
     NowPlayingFragment fragmentPlaying;
     @Inject
     PopularFragment fragmentPopular;
     @Inject
     SearchFragment fragmentSearch;
+    @Inject
+    SavedMoviesFragment fragmentSavedMovies;
 
     private Fragment active ;
     @Inject
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         getGetApiService=getApiService;
         manager.beginTransaction().add(R.id.holderContainer,fragmentPlaying,"2").hide(fragmentPlaying).commit();
         manager.beginTransaction().add(R.id.holderContainer,fragmentSearch,"3").hide(fragmentSearch).commit();
+        manager.beginTransaction().add(R.id.holderContainer,fragmentSavedMovies,"4").hide(fragmentSavedMovies).commit();
         manager.beginTransaction().add(R.id.holderContainer,fragmentPopular,"1").commit();
 
     }
@@ -98,6 +99,12 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 active=fragmentSearch;
                 return true;
             }
+            case R.id.savedMovies:
+            {
+                manager.beginTransaction().hide(active).show(fragmentSavedMovies).commit();
+                active=fragmentSavedMovies;
+            }
+
 
         }
         return false;
