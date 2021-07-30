@@ -5,7 +5,11 @@ import com.example.ayushmoviesapplication.data.models.NowPlayingResponse.NowPlay
 import com.example.ayushmoviesapplication.data.models.PopularMoviesList.PopularMovieList;
 import com.example.ayushmoviesapplication.data.models.SearchedMovieList.SearchMovieResponse;
 
+import javax.inject.Singleton;
+
+import io.reactivex.Observable;
 import io.reactivex.Single;
+import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
@@ -36,11 +40,17 @@ public interface MovieInterface {
             @Query("page") String page
     );
 
-    //https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-    @GET("3/movie/{movie_id}")
+//    https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
+    @GET("3/movie/{movie_id}?")
     Single<MovieDetailsResponse> getMovieDetailsById(
             @Path("movie_id") int id,
-            @Query("api_key") String token,
-            @Query("language") String language
-            );
+            @Query("api_key") String token
+
+           );
+
+//    @GET("3/movie/{movie_id}?")
+//    Call<MovieDetailsResponse> getMovieDetailsById(@Path("movie_id") int id,
+//            @Query("api_key") String token
+//
+//    );
 }

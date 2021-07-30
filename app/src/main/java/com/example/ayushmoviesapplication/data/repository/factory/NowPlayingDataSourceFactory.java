@@ -14,7 +14,6 @@ public class NowPlayingDataSourceFactory extends DataSource.Factory<Integer, Mov
 
     private MovieInterface apiService;
     private CompositeDisposable compositeDisposable;
-    private MutableLiveData<NowPlayingDataSource> nowPlayingLiveDataSource = new MutableLiveData<NowPlayingDataSource>();
     public NowPlayingDataSourceFactory(MovieInterface apiService, CompositeDisposable compositeDisposable)
     {
         this.apiService=apiService;
@@ -24,6 +23,5 @@ public class NowPlayingDataSourceFactory extends DataSource.Factory<Integer, Mov
     @Override
     public DataSource<Integer, Movie> create() {
         NowPlayingDataSource dataSource=new NowPlayingDataSource(compositeDisposable,apiService);
-        nowPlayingLiveDataSource.postValue(dataSource);
         return dataSource;    }
 }

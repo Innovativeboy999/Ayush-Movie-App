@@ -4,25 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.ayushmoviesapplication.R;
-import com.example.ayushmoviesapplication.data.Api.MovieClient;
-import com.example.ayushmoviesapplication.data.repository.SearchedMoviePageListRepository;
 import com.example.ayushmoviesapplication.databinding.ActivityMainBinding;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.NowPlayingFragment;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.PopularFragment;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.SearchFragment;
-import com.example.ayushmoviesapplication.ui.Activities.ViewModels.MainActivityViewModel;
 import com.google.android.material.navigation.NavigationBarView;
-
-import kotlin.Suppress;
 
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener{
 

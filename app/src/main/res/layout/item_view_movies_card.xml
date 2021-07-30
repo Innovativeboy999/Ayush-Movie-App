@@ -64,8 +64,10 @@
 
             </LinearLayout>
             <RatingBar
+                android:padding="5dp"
+                android:layout_gravity="center"
                 android:id="@+id/rating_bar"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:numStars="5"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

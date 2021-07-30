@@ -9,9 +9,7 @@ import androidx.paging.PagedList;
 import com.example.ayushmoviesapplication.data.Api.MovieClient;
 import com.example.ayushmoviesapplication.data.models.PopularMoviesList.Movie;
 import com.example.ayushmoviesapplication.data.models.SearchedMovieList.SearchedMovie;
-import com.example.ayushmoviesapplication.data.repository.NowPlayingPageListRepository;
-import com.example.ayushmoviesapplication.data.repository.PopularMoviePageListRepository;
-import com.example.ayushmoviesapplication.data.repository.SearchedMoviePageListRepository;
+import com.example.ayushmoviesapplication.data.repository.Repository;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -20,20 +18,17 @@ public class MainActivityViewModel extends ViewModel {
     public LiveData<PagedList<SearchedMovie>> searchedMoviePagedList;
     public LiveData<PagedList<Movie>> popularMoviePagedList;
     public LiveData<PagedList<Movie>> nowPlayingPagedList;
-    private PopularMoviePageListRepository popularMoviePageListRepository=new PopularMoviePageListRepository(MovieClient.getMovieInterface());
-    private NowPlayingPageListRepository nowPlayingPageListRepository = new NowPlayingPageListRepository(MovieClient.getMovieInterface());
-    public SearchedMoviePageListRepository searchedMoviePageListRepository =new SearchedMoviePageListRepository(MovieClient.getMovieInterface(), "");
+    public Repository repository=new Repository(MovieClient.getMovieInterface());
 
     public MainActivityViewModel()
     {
-        Log.i("1111111", "MainActivityViewModel: MainActivtiy ViewModel ");
     }
 
 
     public void getPopularMoviePagedList() {
         if(popularMoviePagedList==null)
         {
-            popularMoviePagedList=popularMoviePageListRepository.fetchLiveSearchedMovieList(compositeDisposable);
+            popularMoviePagedList=repository.fetchLivePopularMovieList(compositeDisposable);
 
         }
     }
@@ -41,7 +36,7 @@ public class MainActivityViewModel extends ViewModel {
     public void getSearchedMoviePagedList() {
         if(searchedMoviePagedList== null)
         {
-            searchedMoviePagedList=searchedMoviePageListRepository.fetchLiveSearchedMovieList(compositeDisposable);
+            searchedMoviePagedList=repository.fetchLiveSearchedMovieList(compositeDisposable,"");
         }
     }
 
@@ -49,7 +44,7 @@ public class MainActivityViewModel extends ViewModel {
     public void getNowPlayingPagedList() {
         if(nowPlayingPagedList==null)
         {
-            nowPlayingPagedList=nowPlayingPageListRepository.fetchLiveSearchedMovieList(compositeDisposable);
+            nowPlayingPagedList=repository.fetchLiveNowPlayingMovieList(compositeDisposable);
         }
     }
 

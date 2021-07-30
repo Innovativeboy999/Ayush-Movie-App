@@ -14,7 +14,6 @@ public class PopularMovieDataSourceFactory extends DataSource.Factory<Integer, M
 
         private MovieInterface apiService;
         private CompositeDisposable compositeDisposable;
-        private MutableLiveData<PopularMovieDataSource> popularMovieLiveDataSource = new MutableLiveData<PopularMovieDataSource>();
         public PopularMovieDataSourceFactory(MovieInterface apiService, CompositeDisposable compositeDisposable)
         {
             this.apiService=apiService;
@@ -24,12 +23,7 @@ public class PopularMovieDataSourceFactory extends DataSource.Factory<Integer, M
         @Override
         public DataSource<Integer, Movie> create() {
             PopularMovieDataSource dataSource=new PopularMovieDataSource(compositeDisposable,apiService);
-            popularMovieLiveDataSource.postValue(dataSource);
             return dataSource;
         }
 
-        public void refresh(String queryString)
-        {
-            popularMovieLiveDataSource.getValue().invalidate();
-        }
 }

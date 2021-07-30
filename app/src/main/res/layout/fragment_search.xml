@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.Activities.Fragments.SearchFragment">
 
@@ -10,18 +11,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:background="@color/design_default_color_primary"
+            android:layout_width="match_parent"
+            app:queryHint="Search Movie here"
+            android:layout_height="55dp"/>
 
-    <EditText
-        android:id="@+id/search_edit_text"
-        android:singleLine="true"
-        android:layout_margin="5dp"
-        android:hint="Search"
-        android:padding="8dp"
-        android:textSize="18dp"
-        android:drawableTint="@color/bottom_nav_item_color_selector"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="55dp"/>
         <ImageView
             android:padding="5dp"
             android:id="@+id/search_button"

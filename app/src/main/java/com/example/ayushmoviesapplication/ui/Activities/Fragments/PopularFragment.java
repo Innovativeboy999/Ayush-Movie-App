@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,17 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.ayushmoviesapplication.R;
-import com.example.ayushmoviesapplication.data.Api.MovieClient;
-import com.example.ayushmoviesapplication.data.Api.MovieInterface;
 import com.example.ayushmoviesapplication.data.models.PopularMoviesList.Movie;
-import com.example.ayushmoviesapplication.data.models.SearchedMovieList.SearchedMovie;
-import com.example.ayushmoviesapplication.data.repository.PopularMoviePageListRepository;
-import com.example.ayushmoviesapplication.data.repository.SearchedMoviePageListRepository;
 import com.example.ayushmoviesapplication.databinding.FragmentPopularBinding;
 import com.example.ayushmoviesapplication.ui.Activities.ViewModels.MainActivityViewModel;
 import com.example.ayushmoviesapplication.ui.adapters.PopularMovieAdapter;
-import com.example.ayushmoviesapplication.ui.adapters.SearchAdapter;
 
 public class PopularFragment extends Fragment {
     private FragmentPopularBinding binding;

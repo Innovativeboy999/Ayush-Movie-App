@@ -4,9 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,20 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.ayushmoviesapplication.R;
-import com.example.ayushmoviesapplication.data.Api.MovieClient;
-import com.example.ayushmoviesapplication.data.Api.MovieInterface;
 import com.example.ayushmoviesapplication.data.models.SearchedMovieList.SearchedMovie;
-import com.example.ayushmoviesapplication.data.repository.SearchedMoviePageListRepository;
 import com.example.ayushmoviesapplication.databinding.FragmentSearchBinding;
 import com.example.ayushmoviesapplication.ui.Activities.ViewModels.MainActivityViewModel;
 import com.example.ayushmoviesapplication.ui.adapters.SearchAdapter;
-import com.google.android.material.theme.MaterialComponentsViewInflater;
-
-import kotlin.Suppress;
 
 
-public class SearchFragment extends Fragment implements View.OnClickListener{
+public class SearchFragment extends Fragment {
 
     private FragmentSearchBinding binding;
     private SearchAdapter adapter=new SearchAdapter(getContext());
@@ -44,13 +38,14 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding=FragmentSearchBinding.inflate(inflater,container, false);
+        searchViewInitialization();
+
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         viewModel=getViewModel();
         viewModel.getSearchedMoviePagedList();
@@ -67,7 +62,7 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onResume() {
         super.onResume();
-        setOnClickListener();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
 
         adapter=new SearchAdapter(this.getContext());
         binding.searchRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -75,35 +70,38 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
         binding.searchRecyclerView.setAdapter(adapter);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId())
-        {
-            case R.id.search_button:
-            {
-                callonClick();
-            }
-        }
-    }
-
     private MainActivityViewModel getViewModel() {
         return new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
     }
 
-    private void setOnClickListener()
+    private void searchViewInitialization()
     {
-        binding.searchButton.setOnClickListener(this);
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if(query.length()>0)
+                {
+                    viewModel.repository.getSearchedMovieDataSourceFactory().refresh(query);
+
+                }
+                else
+                {
+                    Toast.makeText(getActivity(), "Please Type Something to search", Toast.LENGTH_SHORT).show();
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
 
-    public void callonClick()
-    {
-        if(binding.searchEditText.getText().toString().length()>0)
-        {
-            viewModel.searchedMoviePageListRepository.getSearchedMovieDataSourceFactory().refresh(binding.searchEditText.getText().toString());
-        }
-        else
-        {
-            Toast.makeText(getActivity(), "Please Type Something to search", Toast.LENGTH_SHORT).show();
-        }
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
     }
+
 }

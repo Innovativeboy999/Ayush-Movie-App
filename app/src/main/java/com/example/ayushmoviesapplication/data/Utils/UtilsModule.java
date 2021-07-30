@@ -20,26 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class UtilsModule {
     @Provides
     @Singleton
-    Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        return retrofit;
-    }
-
-    @Provides
-    @Singleton
-    MovieInterface getApiCallInterface(Retrofit retrofit) {
-        return retrofit.create(MovieInterface.class);
-    }
-
-    @Provides
-    @Singleton
     HttpLoggingInterceptor getLoggingInterceptor()
     {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -59,4 +39,28 @@ public class UtilsModule {
 
         return okHttpClient;
     }
+
+    @Provides
+    @Singleton
+    Retrofit provideRetrofit( OkHttpClient okHttpClient) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        return retrofit;
+    }
+
+    @Provides
+    @Singleton
+    MovieInterface getApiInterfaceService(Retrofit retrofit) {
+        return retrofit.create(MovieInterface.class);
+    }
+
+
+
+
 }
