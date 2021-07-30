@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.ayushmoviesapplication.R;
+import com.example.ayushmoviesapplication.data.Api.DaggerMovieComponentInterface;
+import com.example.ayushmoviesapplication.data.Api.MovieComponentInterface;
 import com.example.ayushmoviesapplication.data.Api.MovieInterface;
+import com.example.ayushmoviesapplication.data.Utils.ContextModule;
 import com.example.ayushmoviesapplication.databinding.ActivityMainBinding;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.NowPlayingFragment;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.PopularFragment;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     private PopularFragment fragmentPopular=new PopularFragment();
     private SearchFragment fragmentSearch=new SearchFragment();
     private Fragment active =fragmentPopular;
+    public static MovieInterface getGetApiService;
 
     @Inject MovieInterface getApiService;
     @Override
@@ -34,6 +38,11 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         binding=ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        MovieComponentInterface movieComponentInterface= DaggerMovieComponentInterface.builder()
+                        .contextModule(new ContextModule(this))
+                        .build();
+
+        getGetApiService=movieComponentInterface.getApiService();
         manager.beginTransaction().add(R.id.holderContainer,fragmentPlaying,"2").hide(fragmentPlaying).commit();
         manager.beginTransaction().add(R.id.holderContainer,fragmentSearch,"3").hide(fragmentSearch).commit();
         manager.beginTransaction().add(R.id.holderContainer,fragmentPopular,"1").commit();

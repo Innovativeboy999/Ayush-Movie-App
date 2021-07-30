@@ -1,6 +1,6 @@
 package com.example.ayushmoviesapplication.data.Utils;
 
-
+import android.app.Activity;
 import android.content.Context;
 
 import javax.inject.Named;
@@ -9,16 +9,16 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class ContextModule {
+public class ActivityContextModule {
 
-    Context context;
+    private final Context context;
 
-    public ContextModule(Context context){
+    ActivityContextModule(Activity context){
         this.context = context;
     }
 
     @Named("activity_context")
     @MovieComponentInterfaceScope
     @Provides
-    public Context context(){ return context.getApplicationContext(); }
+    public Context context(){ return context; }
 }

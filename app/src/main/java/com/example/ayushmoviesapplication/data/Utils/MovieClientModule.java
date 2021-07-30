@@ -18,11 +18,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module(includes = ContextModule.class)
 public class MovieClientModule {
+    @MovieComponentInterfaceScope
     @Provides
     public Gson gson(){
         GsonBuilder gsonBuilder = new GsonBuilder();
         return gsonBuilder.create();
     }
+    @MovieComponentInterfaceScope
     @Provides
     public HttpLoggingInterceptor getLoggingInterceptor()
     {
@@ -31,6 +33,7 @@ public class MovieClientModule {
         return logging;
     }
 
+    @MovieComponentInterfaceScope
     @Provides
     public OkHttpClient getRequestHeader(HttpLoggingInterceptor loggingInterceptor) {
 
@@ -43,6 +46,7 @@ public class MovieClientModule {
         return okHttpClient;
     }
 
+    @MovieComponentInterfaceScope
     @Provides
     public Retrofit provideRetrofit(OkHttpClient okHttpClient, Gson gson) {
 
@@ -56,6 +60,7 @@ public class MovieClientModule {
         return retrofit;
     }
 
+    @MovieComponentInterfaceScope
     @Provides
     public MovieInterface getApiInterfaceService(Retrofit retrofit) {
         return retrofit.create(MovieInterface.class);

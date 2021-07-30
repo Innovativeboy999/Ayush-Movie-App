@@ -20,7 +20,7 @@ public class MainActivityViewModel extends ViewModel {
     public LiveData<PagedList<Movie>> popularMoviePagedList;
     public LiveData<PagedList<Movie>> nowPlayingPagedList;
 //    public Repository repository=new Repository(MovieClient.getMovieInterface());
-    public Repository repository=new Repository(MovieClient.getMovieInterface());
+    public Repository repository=new Repository(MainActivity.getGetApiService);
 
     public MainActivityViewModel()
     {
