@@ -1,10 +1,9 @@
-package com.example.ayushmoviesapplication.data.Utils;
+package com.example.ayushmoviesapplication.data.Utils.modules;
 
 
 import android.content.Context;
-
+import com.example.ayushmoviesapplication.data.Utils.scope.MovieComponentInterfaceScope;
 import javax.inject.Named;
-
 import dagger.Module;
 import dagger.Provides;
 

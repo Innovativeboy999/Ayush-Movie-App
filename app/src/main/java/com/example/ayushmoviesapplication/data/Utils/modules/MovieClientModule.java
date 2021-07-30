@@ -1,12 +1,13 @@
-package com.example.ayushmoviesapplication.data.Utils;
+package com.example.ayushmoviesapplication.data.Utils.modules;
 
 import com.example.ayushmoviesapplication.data.Api.MovieInterface;
+import com.example.ayushmoviesapplication.data.Utils.Constants;
+import com.example.ayushmoviesapplication.data.Utils.modules.ContextModule;
+import com.example.ayushmoviesapplication.data.Utils.scope.MovieComponentInterfaceScope;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;

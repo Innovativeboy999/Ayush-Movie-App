@@ -1,4 +1,4 @@
-package com.example.ayushmoviesapplication.data.Utils;
+package com.example.ayushmoviesapplication.data.Utils.scope;
 
 import javax.inject.Scope;
 

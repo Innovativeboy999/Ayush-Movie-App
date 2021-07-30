@@ -6,13 +6,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.ayushmoviesapplication.R;
-import com.example.ayushmoviesapplication.data.Api.DaggerMovieComponentInterface;
-import com.example.ayushmoviesapplication.data.Api.MovieComponentInterface;
+import com.example.ayushmoviesapplication.data.Utils.MyApplication;
+import com.example.ayushmoviesapplication.data.Utils.interfaces.DaggerMainActivityComponentInterface;
+import com.example.ayushmoviesapplication.data.Utils.interfaces.DaggerMovieComponentInterface;
+import com.example.ayushmoviesapplication.data.Utils.interfaces.MainActivityComponentInterface;
+import com.example.ayushmoviesapplication.data.Utils.interfaces.MovieComponentInterface;
 import com.example.ayushmoviesapplication.data.Api.MovieInterface;
-import com.example.ayushmoviesapplication.data.Utils.ContextModule;
+import com.example.ayushmoviesapplication.data.Utils.modules.ContextModule;
+import com.example.ayushmoviesapplication.data.Utils.modules.MainActivityModule;
 import com.example.ayushmoviesapplication.databinding.ActivityMainBinding;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.NowPlayingFragment;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.PopularFragment;
@@ -25,24 +30,37 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
     private ActivityMainBinding binding;
     private FragmentManager manager=getSupportFragmentManager();
-    private NowPlayingFragment fragmentPlaying=new NowPlayingFragment();;
-    private PopularFragment fragmentPopular=new PopularFragment();
-    private SearchFragment fragmentSearch=new SearchFragment();
-    private Fragment active =fragmentPopular;
+//    private NowPlayingFragment fragmentPlaying=new NowPlayingFragment();;
+//    private PopularFragment fragmentPopular=new PopularFragment();
+//    private SearchFragment fragmentSearch=new SearchFragment();
+    @Inject
+    NowPlayingFragment fragmentPlaying;
+    @Inject
+    PopularFragment fragmentPopular;
+    @Inject
+    SearchFragment fragmentSearch;
+
+    private Fragment active ;
+    @Inject
+    public  MovieInterface getApiService;
+
     public static MovieInterface getGetApiService;
 
-    @Inject MovieInterface getApiService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        MovieComponentInterface movieComponentInterface= DaggerMovieComponentInterface.builder()
-                        .contextModule(new ContextModule(this))
-                        .build();
 
-        getGetApiService=movieComponentInterface.getApiService();
+        MainActivityComponentInterface mainActivityComponentInterface=DaggerMainActivityComponentInterface.builder()
+                .mainActivityModule(new MainActivityModule(this))
+                .movieComponentInterface(MyApplication.get(this).getGlobalComponent())
+                .build();
+
+        mainActivityComponentInterface.injectMainActivity(this);
+        active =fragmentPopular;
+        getGetApiService=getApiService;
         manager.beginTransaction().add(R.id.holderContainer,fragmentPlaying,"2").hide(fragmentPlaying).commit();
         manager.beginTransaction().add(R.id.holderContainer,fragmentSearch,"3").hide(fragmentSearch).commit();
         manager.beginTransaction().add(R.id.holderContainer,fragmentPopular,"1").commit();
