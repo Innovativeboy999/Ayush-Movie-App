@@ -24,7 +24,7 @@ import com.example.ayushmoviesapplication.ui.adapters.SavedMovieAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SavedMoviesFragment extends Fragment {
+public class SavedMoviesFragment extends Fragment implements SavedMovieAdapter.MovieDeleted{
     private MainActivityViewModel viewModel;
     private SavedMovieAdapter adapter;
     private FragmentSavedMoviesBinding binding;
@@ -57,8 +57,10 @@ public class SavedMoviesFragment extends Fragment {
         viewModel.savedMoviesLiveData.observe(getViewLifecycleOwner(), new Observer<List<MovieForRoom>>() {
             @Override
             public void onChanged(List<MovieForRoom> movieForRooms) {
-                adapter=new SavedMovieAdapter(movieForRooms);
+                adapter=new SavedMovieAdapter(movieForRooms,getContext().getApplicationContext(), SavedMoviesFragment.this::onMovieDeleted);
                 binding.savedMovieRecyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+
                 Log.i("11111", "onChanged: size of saved movies"+movieForRooms.size());
             }
         });
@@ -67,5 +69,12 @@ public class SavedMoviesFragment extends Fragment {
 
     private MainActivityViewModel getViewModel() {
         return new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
+    }
+
+
+    @Override
+    public void onMovieDeleted() {
+        viewModel.getListOfSavedMovies(getContext().getApplicationContext(),getActivity());
+        adapter.notifyDataSetChanged();
     }
 }

@@ -20,7 +20,7 @@ public interface DaoAccess {
     void deleteTask(MovieForRoom movie);
 
 
-    @Query("SELECT * FROM MovieForRoom WHERE id =:taskId")
+    @Query("SELECT * FROM MovieForRoom WHERE generated_id =:taskId")
     LiveData<MovieForRoom> getTask(int taskId);
 
     @Query("SELECT * FROM MovieForRoom ")

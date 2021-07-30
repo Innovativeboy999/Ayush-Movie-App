@@ -29,6 +29,8 @@
 
             <TextView
                 android:visibility="gone"
+                android:textStyle="bold"
+                android:textSize="16dp"
                 android:text="Movies Pics Not available in Offline Mode"
                 android:layout_width="match_parent"
                 android:id="@+id/text_img_placeholder"
@@ -36,7 +38,7 @@
                 android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:src="@drawable/ic_launcher_background"
-                android:layout_height="280dp"/>
+                android:layout_height="60dp"/>
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
