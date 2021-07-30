@@ -10,6 +10,7 @@ import com.example.ayushmoviesapplication.data.Api.MovieClient;
 import com.example.ayushmoviesapplication.data.models.PopularMoviesList.Movie;
 import com.example.ayushmoviesapplication.data.models.SearchedMovieList.SearchedMovie;
 import com.example.ayushmoviesapplication.data.repository.Repository;
+import com.example.ayushmoviesapplication.ui.Activities.MainActivity;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -18,6 +19,7 @@ public class MainActivityViewModel extends ViewModel {
     public LiveData<PagedList<SearchedMovie>> searchedMoviePagedList;
     public LiveData<PagedList<Movie>> popularMoviePagedList;
     public LiveData<PagedList<Movie>> nowPlayingPagedList;
+//    public Repository repository=new Repository(MovieClient.getMovieInterface());
     public Repository repository=new Repository(MovieClient.getMovieInterface());
 
     public MainActivityViewModel()

@@ -5,16 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.ayushmoviesapplication.R;
+import com.example.ayushmoviesapplication.data.Api.MovieInterface;
 import com.example.ayushmoviesapplication.databinding.ActivityMainBinding;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.NowPlayingFragment;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.PopularFragment;
 import com.example.ayushmoviesapplication.ui.Activities.Fragments.SearchFragment;
 import com.google.android.material.navigation.NavigationBarView;
+
+import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener{
 
@@ -24,8 +26,8 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     private PopularFragment fragmentPopular=new PopularFragment();
     private SearchFragment fragmentSearch=new SearchFragment();
     private Fragment active =fragmentPopular;
-    private Intent intent;
 
+    @Inject MovieInterface getApiService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

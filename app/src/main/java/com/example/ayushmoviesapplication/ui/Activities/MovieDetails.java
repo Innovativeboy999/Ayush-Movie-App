@@ -30,8 +30,7 @@ public class MovieDetails extends AppCompatActivity {
 
         viewModel.fetchMovieDetails(intent.getIntExtra("movie_id",100));
 
-        if(viewModel.movieDetailsResponseLiveData!=null)
-        {
+
             viewModel.movieDetailsResponseLiveData.observe(this, new Observer<MovieDetailsResponse>() {
                 @Override
                 public void onChanged(MovieDetailsResponse movieDetailsResponse) {
@@ -40,7 +39,6 @@ public class MovieDetails extends AppCompatActivity {
                             load("https://image.tmdb.org/t/p/w500/"+movieDetailsResponse.getPosterPath()).into(binding.movieDetailsPic);
                 }
             });
-        }
 
 
     }

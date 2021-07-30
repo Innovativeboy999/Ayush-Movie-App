@@ -7,6 +7,7 @@ import com.example.ayushmoviesapplication.data.models.SearchedMovieList.SearchMo
 
 import javax.inject.Singleton;
 
+import dagger.Provides;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Call;

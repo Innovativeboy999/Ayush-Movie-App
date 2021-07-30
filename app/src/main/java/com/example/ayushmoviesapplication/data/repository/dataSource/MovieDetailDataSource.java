@@ -28,7 +28,7 @@ public class MovieDetailDataSource
     private CompositeDisposable compositeDisposable;
     private MovieInterface apiService;
     private MutableLiveData<MovieDetailsResponse> movieDetailResponseMutableLiveData = new MutableLiveData<>();
-    public LiveData<MovieDetailsResponse> movieDetailsResponseLiveData;
+    public LiveData<MovieDetailsResponse> movieDetailsResponseLiveData=movieDetailResponseMutableLiveData;
     public MovieDetailDataSource(CompositeDisposable compositeDisposable, MovieInterface apiService)
     {
         this.compositeDisposable=compositeDisposable;
@@ -45,7 +45,6 @@ public class MovieDetailDataSource
                                     public void accept(MovieDetailsResponse movieDetailsResponse) throws Exception {
                                         Log.i("11111", "accept: success"+movieDetailsResponse.getTitle());
                                         movieDetailResponseMutableLiveData.postValue(movieDetailsResponse);
-                                        movieDetailsResponseLiveData=movieDetailResponseMutableLiveData;
 
                                     }
                                 }, new Consumer<Throwable>() {

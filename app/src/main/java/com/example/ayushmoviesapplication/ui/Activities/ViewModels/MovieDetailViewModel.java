@@ -3,18 +3,21 @@ package com.example.ayushmoviesapplication.ui.Activities.ViewModels;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.ayushmoviesapplication.data.Api.MovieClient;
 import com.example.ayushmoviesapplication.data.models.MovieDetailsResponse.MovieDetailsResponse;
 import com.example.ayushmoviesapplication.data.repository.MovieDetailRepository;
+import com.example.ayushmoviesapplication.ui.Activities.MainActivity;
 
 import io.reactivex.disposables.CompositeDisposable;
 
 public class MovieDetailViewModel extends ViewModel {
     private MovieDetailRepository repository =new MovieDetailRepository(MovieClient.getMovieInterface());
+
     CompositeDisposable compositeDisposable=new CompositeDisposable();
-    public LiveData<MovieDetailsResponse> movieDetailsResponseLiveData;
+    public LiveData<MovieDetailsResponse> movieDetailsResponseLiveData=new MutableLiveData<>();
     public  MovieDetailViewModel()
     {
         Log.i("11111", "MovieDetailViewModel: object created ");
